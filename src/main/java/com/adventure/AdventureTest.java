@@ -1,3 +1,5 @@
+package com.adventure;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
