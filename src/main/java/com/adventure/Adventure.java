@@ -1,4 +1,4 @@
-
+package com.adventure;
 /*
  * File: Adventure.java
  * --------------------
@@ -67,24 +67,28 @@ public class Adventure {
 		
 		// read the "rooms" file
 		try {
-			file = new File(name + "Rooms.txt");
-			scan = new Scanner(file);
+			InputStream inputStream = getClass().getResourceAsStream("/" + name + "CrowtherRooms.txt");
+			if (inputStream == null) {
+				System.out.println("No se pudo encontrar el archivo " + name + "CrowtherRooms.txt");
+				return false;
+			}
+			scan = new Scanner(inputStream);
 
 			while (scan.hasNext()) {
 				AdvRoom room = AdvRoom.readFromFile(scan);
 				map.put(room.getRoomNumber(), room);
 			}
 			scan.close();
-		} catch (IOException e) {
-			System.out.println("Problem reading " + name + "Rooms.txt" + ": " + e);
+		} catch (Exception e) {
+			System.out.println("Problema leyendo " + name + "CrowtherRooms.txt" + ": " + e);
 			return false;
 		}
 		
 		// read the "objects" file if it exists
 		try {
-			file = new File(name + "Objects.txt");
-			if (file.exists()) {
-				scan = new Scanner(file);
+			InputStream inputStream = getClass().getResourceAsStream("/" + name + "CrowtherObjects.txt");
+			if (inputStream != null) {
+				scan = new Scanner(inputStream);
 				while (scan.hasNext()) {
 					AdvObject object = AdvObject.readFromFile(scan);
 					map.get(object.getInitialLocation()).addObject(object);
@@ -92,16 +96,16 @@ public class Adventure {
 				}
 				scan.close();
 			}
-		} catch (IOException e) {
-			System.out.println("Problem reading " + name + "Objects.txt" + ": " + e);
+		} catch (Exception e) {
+			System.out.println("Problema leyendo " + name + "CrowtherObjects.txt" + ": " + e);
 			return false;
 		}
 
 		// read the "synonyms" file if it exists
 		try {
-			file = new File(name + "Synonyms.txt");
-			if (file.exists()) {
-				scan = new Scanner(file);
+			InputStream inputStream = getClass().getResourceAsStream("/" + name + "CrowtherSynonyms.txt");
+			if (inputStream != null) {
+				scan = new Scanner(inputStream);
 				String line;
 				while (scan.hasNextLine() && (line = scan.nextLine()).trim().length() > 0) {
 					String[] split = line.split("=");
@@ -109,8 +113,8 @@ public class Adventure {
 				}
 				scan.close();
 			}
-		} catch (IOException e) {
-			System.out.println("Problem reading " + name + "Synonyms.txt" + ": " + e);
+		} catch (Exception e) {
+			System.out.println("Problema leyendo " + name + "CrowtherSynonyms.txt" + ": " + e);
 			return false;
 		}
 		

@@ -1,3 +1,5 @@
+package com.adventure;
+
 /*
  * File: AdvObject.java
  * --------------------

@@ -1,3 +1,5 @@
+package com.adventure;
+
 /* Class: AdvMotionCommand */
 /**
  * This class is the subclass of AdvCommand that corresponds to

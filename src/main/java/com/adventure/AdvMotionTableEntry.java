@@ -1,3 +1,5 @@
+package com.adventure;
+
 /* Class: AdvMotionTableEntry */
 /**
  * This class is used to store a single entry in the motion table.
